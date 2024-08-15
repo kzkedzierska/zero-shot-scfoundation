@@ -6,16 +6,21 @@ channels:
   - bioconda
   - defaults
 dependencies:
+  - python==3.10
+  - r-base
+  - pip
   - cuda==11.7.0
-  - pytorch==1.13.1
-  - torchvision==0.14.1
-  - torchaudio==0.13.1
-  - pytorch-cuda==11.7
   - ninja
   - rpy2
   - packaging
   - gxx==11.4
   - git-lfs
   - pip:
-    - colorlog
+    - --index-url https://download.pytorch.org/whl/cu117
+    - torch==1.13
+    - torchvision
+    - torchaudio
+    - wandb
+    - colorlog 
     - PyComplexHeatmap
+    - scib[kBET,rpy2]
