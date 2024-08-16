@@ -95,6 +95,24 @@ def eval_scib_metrics(
             verbose=False,
             scale=True,
         )
+
+        results_dict["PCR_batch_before"] = scib.metrics.pcr(
+            adata,
+            covariate=batch_key,
+            n_comps=50,
+            verbose=False,
+            recompute_pca=True,
+        )
+
+        results_dict["PCR_batch_after"] = scib.metrics.pcr(
+            adata,
+            covariate=batch_key,
+            embed=embedding_key,
+            n_comps=50,
+            verbose=False,
+            recompute_pca=True,
+        )
+
     results_dict["avg_bio"] = np.mean(
         [
             results_dict["NMI_cluster/label"],
