@@ -100,18 +100,17 @@ class CellEmbeddingsEval:
             )
 
     def evaluate(
-        self, embedding_key: str = "X_scGPT", n_cells: int = 7500
+        self, embedding_key: str = "X_scGPT", n_cells: int = 7500, seed: int = 7
     ) -> pd.DataFrame:
         adata_ = self.data.adata.copy()
 
         # if adata_ too big, take a subset
         if adata_.n_obs > n_cells:
             log.warning(
-                f"adata_ has {adata_.n_obs} cells. "
-                f"Taking a subset of {n_cells} cells."
+                f"adata has {adata_.n_obs} cells. "
+                f"Taking a subset of {n_cells} cells. "
+                f"Subsetting adata with seed {seed}."
             )
-            seed = np.random.randint(0, 100000)
-            log.debug(f"Subsetting adata_ with seed {seed}")
             sc.pp.subsample(
                 adata_, n_obs=n_cells, copy=False, random_state=seed
             )

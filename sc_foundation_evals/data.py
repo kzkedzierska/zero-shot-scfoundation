@@ -295,6 +295,9 @@ class InputData:
         sc.pp.filter_genes(self.adata, min_cells=1)
         sc.pp.filter_cells(self.adata, min_genes=1)
 
+        if issparse(self.adata.X):
+            self.adata.X = self.adata.X.toarray()
+
         preprocessor = Preprocessor(
             # the key in adata.layers to use as raw data
             use_key=None,

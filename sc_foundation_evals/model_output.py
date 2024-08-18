@@ -132,6 +132,7 @@ class GeneExprPredEval:
             )
             # check if embedding_key is valid
             for key in embedding_key:
+                # TODO: this should teally not be called embedding
                 check_attributes(self.eval_instance, key)
 
         elif self.model_type == "geneformer":
